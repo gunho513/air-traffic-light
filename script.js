@@ -348,3 +348,16 @@ sidoSelect.addEventListener('change', (event) => {
 window.addEventListener('DOMContentLoaded', () => {
   fetchAirQualityData(sidoSelect.value || '서울');
 });
+
+// PWA 서비스 워커(Service Worker) 등록 로직
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('PWA 서비스 워커 등록 성공 (범위):', registration.scope);
+      })
+      .catch((error) => {
+        console.error('PWA 서비스 워커 등록 실패:', error);
+      });
+  });
+}

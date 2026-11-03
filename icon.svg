@@ -87,3 +87,4 @@
   <circle cx="256" cy="392" r="34" fill="url(#redLamp)"/>
   <ellipse cx="248" cy="380" rx="12" ry="6" fill="#ffffff" opacity="0.6" transform="rotate(-25 248 380)"/>
 </svg>
+

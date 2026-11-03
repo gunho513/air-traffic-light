@@ -1,0 +1,24 @@
+{
+  "name": "우리 동네 공기 신호등",
+  "short_name": "공기신호등",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "description": "실시간 대기오염 정보를 공기 신호등과 차트로 한눈에 확인하는 모바일 PWA 앱",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
