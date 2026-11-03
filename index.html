@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- 문서 유형을 HTML5로 선언 -->
+<html lang="ko">
+<!-- 웹페이지 기본 언어를 한국어로 설정 -->
+<head>
+  <!-- 문자 인코딩을 UTF-8로 지정하여 한글 깨짐 방지 -->
+  <meta charset="UTF-8">
+  <!-- 모바일 및 태블릿 등 반응형 화면을 위한 뷰포트 설정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 브라우저 상단 탭 제목 -->
+  <title>우리 동네 공기 신호등</title>
+  <!-- 고품질 한글 글꼴 Pretendard 웹폰트 연결 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <!-- 외부 디자인 스타일시트 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<!-- 웹페이지 본문 시작 -->
+<body>
+  <!-- 전체 콘텐츠 폭과 중앙 정렬을 담당하는 컨테이너 -->
+  <div class="container">
+    
+    <!-- 상단 네비게이션 헤더 영역 -->
+    <header class="header">
+      <!-- 서비스 메인 로고 및 타이틀 -->
+      <div class="logo-area">
+        <span class="logo-icon">🚦</span>
+        <h1>우리 동네 공기 신호등</h1>
+      </div>
+      <!-- 시·도 선택 드롭다운 박스 -->
+      <div class="select-group">
+        <!-- 드롭다운 안내 라벨 -->
+        <label for="sidoSelect">지역</label>
+        <!-- 18개 시·도 선택 셀렉트 메뉴 -->
+        <select id="sidoSelect">
+          <option value="전국">전국</option>
+          <option value="서울" selected>서울</option>
+          <option value="부산">부산</option>
+          <option value="대구">대구</option>
+          <option value="인천">인천</option>
+          <option value="광주">광주</option>
+          <option value="대전">대전</option>
+          <option value="울산">울산</option>
+          <option value="세종">세종</option>
+          <option value="경기">경기</option>
+          <option value="강원">강원</option>
+          <option value="충북">충북</option>
+          <option value="충남">충남</option>
+          <option value="전북">전북</option>
+          <option value="전남">전남</option>
+          <option value="경북">경북</option>
+          <option value="경남">경남</option>
+          <option value="제주">제주</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- [핵심 기능] 지역 대표 상태를 공기 신호등 형태로 크게 보여주는 카드 -->
+    <section class="traffic-light-card" id="trafficLightCard">
+      <!-- 선택된 지역 이름 안내 -->
+      <h2 class="region-title" id="summaryRegion">서울 대기질</h2>
+      
+      <!-- 신호등 핵심 상태 영역: 이모지 + 상태명(좋음/보통/나쁨/매우나쁨) + 평균 수치 -->
+      <div class="traffic-main">
+        <!-- 상태를 직관적으로 나타내는 대형 신호등 이모지 (🔵🟢🟠🔴) -->
+        <span class="traffic-emoji" id="trafficEmoji">⏳</span>
+        <!-- 등급 상태 한글 명칭 -->
+        <span class="traffic-grade-text" id="trafficGradeText">불러오는 중...</span>
+        <!-- 평균 미세먼지 수치 표시부 -->
+        <div class="traffic-value-box">
+          <span class="traffic-value" id="avgPm10">--</span>
+          <span class="traffic-unit">㎍/㎥</span>
+        </div>
+      </div>
+
+      <!-- 상태에 따른 맞춤형 한 줄 행동 요령 안내 문구 -->
+      <p class="traffic-advice" id="trafficAdvice">불러오는 중...</p>
+    </section>
+
+    <!-- 신호등 색상 등급 가이드 범례 바 -->
+    <div class="legend-bar">
+      <!-- 1등급 좋음 범례 -->
+      <span class="legend-badge badge-good">🔵 좋음 (0~30)</span>
+      <!-- 2등급 보통 범례 -->
+      <span class="legend-badge badge-normal">🟢 보통 (31~80)</span>
+      <!-- 3등급 나쁨 범례 -->
+      <span class="legend-badge badge-bad">🟠 나쁨 (81~150)</span>
+      <!-- 4등급 매우나쁨 범례 -->
+      <span class="legend-badge badge-very-bad">🔴 매우나쁨 (151~)</span>
+    </div>
+
+    <!-- 미세먼지 수치 상위 10개 측정소 가로 막대그래프 카드 -->
+    <section class="chart-card" id="chartCard">
+      <div class="chart-header">
+        <h3 class="chart-title" id="chartTitle">미세먼지 농도 상위 10개 측정소</h3>
+        <span class="chart-subtitle">높은 순 정렬 (가로 막대그래프)</span>
+      </div>
+      <!-- 차트 렌더링 캔버스 래퍼 -->
+      <div class="chart-wrapper">
+        <canvas id="dustBarChart"></canvas>
+      </div>
+    </section>
+
+    <!-- 각 동네 측정소별 카드가 표시되는 메인 영역 -->
+    <main>
+      <!-- 자바스크립트로 측정소별 카드가 동적으로 채워지는 반응형 그리드 -->
+      <div class="card-grid" id="cardGrid"></div>
+    </main>
+
+  </div>
+
+  <!-- Chart.js CDN 라이브러리 연결 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- 동적 동작 및 API 통신을 담당하는 자바스크립트 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>
