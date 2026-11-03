@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- 배경 하늘빛 그라디언트 -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+
+    <!-- 신호등 외관 그라디언트 -->
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- 1. 파랑(좋음) 램프 그라디언트 -->
+    <radialGradient id="blueLamp" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="40%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </radialGradient>
+
+    <!-- 2. 초록(보통) 램프 그라디언트 -->
+    <radialGradient id="greenLamp" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="40%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </radialGradient>
+
+    <!-- 3. 주황(나쁨) 램프 그라디언트 -->
+    <radialGradient id="orangeLamp" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fed7aa"/>
+      <stop offset="40%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </radialGradient>
+
+    <!-- 4. 빨강(매우나쁨) 램프 그라디언트 -->
+    <radialGradient id="redLamp" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="40%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </radialGradient>
+
+    <!-- 그림자 필터 -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+
+    <!-- 발광 필터 -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- 앱 아이콘 둥근 사각형 배경 -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+
+  <!-- 배경 맑은 구름 장식 -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="140" cy="360" rx="90" ry="70"/>
+    <ellipse cx="230" cy="340" rx="100" ry="85"/>
+    <ellipse cx="340" cy="370" rx="90" ry="65"/>
+    <ellipse cx="380" cy="380" rx="70" ry="55"/>
+  </g>
+
+  <!-- 신호등 본체 (그림자 포함) -->
+  <rect x="186" y="56" width="140" height="400" rx="40" fill="url(#bodyGrad)" filter="url(#shadow)"/>
+  <rect x="188" y="58" width="136" height="396" rx="38" fill="none" stroke="#475569" stroke-width="3" opacity="0.6"/>
+
+  <!-- 1. 파랑 램프 (좋음) -->
+  <circle cx="256" cy="116" r="40" fill="#3b82f6" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="256" cy="116" r="34" fill="url(#blueLamp)"/>
+  <ellipse cx="248" cy="104" rx="12" ry="6" fill="#ffffff" opacity="0.6" transform="rotate(-25 248 104)"/>
+
+  <!-- 2. 초록 램프 (보통) -->
+  <circle cx="256" cy="208" r="40" fill="#22c55e" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="256" cy="208" r="34" fill="url(#greenLamp)"/>
+  <ellipse cx="248" cy="196" rx="12" ry="6" fill="#ffffff" opacity="0.6" transform="rotate(-25 248 196)"/>
+
+  <!-- 3. 주황 램프 (나쁨) -->
+  <circle cx="256" cy="300" r="40" fill="#f97316" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="256" cy="300" r="34" fill="url(#orangeLamp)"/>
+  <ellipse cx="248" cy="288" rx="12" ry="6" fill="#ffffff" opacity="0.6" transform="rotate(-25 248 288)"/>
+
+  <!-- 4. 빨강 램프 (매우나쁨) -->
+  <circle cx="256" cy="392" r="40" fill="#ef4444" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="256" cy="392" r="34" fill="url(#redLamp)"/>
+  <ellipse cx="248" cy="380" rx="12" ry="6" fill="#ffffff" opacity="0.6" transform="rotate(-25 248 380)"/>
+</svg>
